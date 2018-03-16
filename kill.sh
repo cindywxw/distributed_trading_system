@@ -1,0 +1,1 @@
+kill $(ps aux | grep 'java Exchange' | awk '{print $2}')

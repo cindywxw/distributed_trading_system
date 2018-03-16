@@ -1,0 +1,38 @@
+#!/usr/bin/python
+from subprocess import Popen,PIPE
+
+
+param = "buy\n%s:%s:%s" % ("IBM", "90.0", "600")
+cmd = "echo \"%s\" | java Client 6100" % param
+p1 = Popen(cmd, stdout=PIPE, shell=True)
+p2 = Popen(cmd, stdout=PIPE, shell=True)
+print p1.stdout.read()
+print p2.stdout.read()
+
+# os.system("java Client 6100 < scenario1.txt");
+# from subprocess import PIPE, Popen
+# import re
+
+# def cmdline(command):
+#     process = Popen(
+#         args=command,
+#         stdout=PIPE,
+#         shell=True
+#     )
+#     return process.communicate()[0]
+
+# def buy(stockName, qty):
+#     price = re.findall("\d+\.\d+", cmdline("echo \"checkprice\nIBM\" | java Client 6100 "))[0]
+#     cmdline("echo \"buy\n%s:%s:%s\" | java Client 6100" % (stockName, price, qty))
+
+# def sell(stockName, qty):
+#     price = re.findall("\d+\.\d+", cmdline("echo \"checkprice\nIBM\" | java Client 6100 "))[0]
+#     cmdline("echo \"sell\n%s:%s:%s\" | java Client 6100" % (stockName, price, qty))
+
+# for i in xrange(100):
+#     sell("IBM", 100)
+#     buy("IBM", 100)
+# print "next"
+# for i in xrange(100):
+#     sell("IBM", 100)
+#     buy("IBM", 100)

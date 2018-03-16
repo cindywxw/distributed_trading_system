@@ -1,0 +1,45 @@
+#!/usr/bin/python
+from subprocess import Popen
+import csv, time
+Continent = []
+Asia = set()
+America = set()
+Europe = set()
+Africa = set()
+
+Sets = [Asia, America, Europe, Africa]
+
+with open('qty_stocks.csv', 'rb') as csvfile:
+    i = 0
+    reader = csv.reader(csvfile)
+    for row in reader:
+        if i == 3:
+            break
+        if i==0:
+            Continent = row
+        if i==2:
+            for j in range(len(Continent)):
+                if Continent[j] == 'Asia':
+                    Asia.add(row[j])
+                if Continent[j] == 'America':
+                    America.add(row[j])
+                if Continent[j] == 'Europe':
+                    Europe.add(row[j])
+                if Continent[j] == 'Africa':
+                    Africa.add(row[j])
+        i = i + 1
+
+j = 6000
+base = 6000
+delay = 0.5
+for s in Sets:
+    for i in s:
+        Popen(["java","Exchange", i, str(j), str(base)])
+        time.sleep(delay)
+        Popen(["java","Exchange", i, str(j+1000), str(base), str(j)])
+        time.sleep(delay)
+        j = j + 1
+
+    j = j/100 * 100 + 100
+    base = j
+

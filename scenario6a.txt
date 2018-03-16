@@ -1,0 +1,2 @@
+echo "buy
+IBM:90.0:1" | java Client 6100
