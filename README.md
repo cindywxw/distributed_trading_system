@@ -3,6 +3,7 @@
 usage: run the server by running the `server` script
 ```
 ./server
+```
 
 This script will start the exchanges at
 
